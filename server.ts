@@ -5,7 +5,7 @@ import { db } from "./server/db.js";
 import { MondayClient } from "./server/monday.js";
 import { TimeEntry, AppAssociation, MondayBoard } from "./src/types.js";
 
-const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+const PORT = process.env.PORT === "5610" ? 5610 : 3000;
 
 async function startServer() {
   const app = express();
@@ -719,7 +719,9 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
-    const distPath = path.join(process.cwd(), "dist");
+    const distPath = process.env.PORT === "5610"
+      ? __dirname
+      : path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
     app.get("*", (req, res) => {
       res.sendFile(path.join(distPath, "index.html"));

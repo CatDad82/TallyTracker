@@ -30,17 +30,30 @@ function checkServerReady(callback, attempts = 0) {
 }
 
 function startServer() {
+  process.env.NODE_ENV = "production";
+  process.env.PORT = "5610";
+
   const serverPath = path.join(__dirname, "dist", "server.cjs");
   console.log("Starting backend server from:", serverPath);
   
-  serverProcess = fork(serverPath, [], {
-    env: { ...process.env, NODE_ENV: "production", PORT: "5610" },
-    stdio: "inherit"
-  });
+  try {
+    require(serverPath);
+    console.log("Express server loaded successfully in-process.");
+  } catch (err) {
+    console.error("Failed to require Express server in main process. Falling back to fork...", err);
+    try {
+      serverProcess = fork(serverPath, [], {
+        env: { ...process.env, NODE_ENV: "production", PORT: "5610" },
+        stdio: "inherit"
+      });
 
-  serverProcess.on("error", (err) => {
-    console.error("Express server failed to start:", err);
-  });
+      serverProcess.on("error", (forkErr) => {
+        console.error("Forked Express server failed to start:", forkErr);
+      });
+    } catch (forkErr) {
+      console.error("Failed to fork Express server:", forkErr);
+    }
+  }
 }
 
 function createWindow() {
@@ -116,15 +129,14 @@ app.whenReady().then(() => {
   startServer();
   
   checkServerReady((success) => {
-    if (success) {
-      createWindow();
-      try {
-        createTray();
-      } catch (e) {
-        console.warn("Could not create system tray icon (might be missing icon.png), proceeding anyway:", e.message);
-      }
-    } else {
-      console.error("Express server failed to load.");
+    createWindow();
+    try {
+      createTray();
+    } catch (e) {
+      console.warn("Could not create system tray icon (might be missing icon.png), proceeding anyway:", e.message);
+    }
+    if (!success) {
+      console.error("Express server failed to respond within timeout, window opened anyway as fallback.");
     }
   });
 
