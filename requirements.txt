@@ -1,3 +1,0 @@
-# Tally Time Tracker — Python dependencies
-# All imports are Python standard library; no third-party packages required.
-# Python 3.10+ recommended.
