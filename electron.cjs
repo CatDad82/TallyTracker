@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, Tray } = require("electron");
+const { app, BrowserWindow, Menu, Tray, dialog } = require("electron");
 const path = require("path");
 const { fork } = require("child_process");
 const http = require("http");
@@ -49,9 +49,17 @@ function startServer() {
 
       serverProcess.on("error", (forkErr) => {
         console.error("Forked Express server failed to start:", forkErr);
+        dialog.showErrorBox(
+          "Server Launch Error",
+          "Forked backend server process failed to start:\n\n" + (forkErr.stack || forkErr.message)
+        );
       });
     } catch (forkErr) {
       console.error("Failed to fork Express server:", forkErr);
+      dialog.showErrorBox(
+        "Server Fork Error",
+        "Failed to require Express server, and fallback fork also failed:\n\n" + (err.stack || err.message) + "\n\nFork error:\n" + (forkErr.stack || forkErr.message)
+      );
     }
   }
 }
@@ -69,6 +77,9 @@ function createWindow() {
 
   // Remove default menu bar
   mainWindow.setMenuBarVisibility(false);
+
+  // Open Developer Tools for troubleshooting blank/white screen issues
+  mainWindow.webContents.openDevTools();
 
   // Load the web app running on port 5610
   mainWindow.loadURL("http://localhost:5610");

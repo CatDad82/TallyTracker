@@ -15,6 +15,7 @@
   "build": {
     "appId": "com.tally.timetracker",
     "productName": "Tally Time Tracker",
+    "asar": false,
     "directories": {
       "output": "dist-desktop"
     },

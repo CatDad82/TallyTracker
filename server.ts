@@ -1,6 +1,5 @@
 import express from "express";
 import path from "path";
-import { createServer as createViteServer } from "vite";
 import { db } from "./server/db.js";
 import { MondayClient } from "./server/monday.js";
 import { TimeEntry, AppAssociation, MondayBoard } from "./src/types.js";
@@ -713,6 +712,7 @@ async function startServer() {
 
   // --- Mount Vite Middleware ---
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa"
