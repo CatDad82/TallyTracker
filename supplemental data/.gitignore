@@ -1,0 +1,11 @@
+node_modules/
+dist/
+dist-desktop/
+dist-installer/
+build/
+__pycache__/
+*.pyc
+*.db
+.env
+.claude/
+~$*
