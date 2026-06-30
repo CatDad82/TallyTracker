@@ -16,7 +16,7 @@ function checkServerReady(callback, attempts = 0) {
     return;
   }
 
-  const req = http.get("http://localhost:3000/api/active", (res) => {
+  const req = http.get("http://localhost:5610/api/active", (res) => {
     if (res.statusCode === 200) {
       if (callback) callback(true);
     } else {
@@ -34,7 +34,7 @@ function startServer() {
   console.log("Starting backend server from:", serverPath);
   
   serverProcess = fork(serverPath, [], {
-    env: { ...process.env, NODE_ENV: "production" },
+    env: { ...process.env, NODE_ENV: "production", PORT: "5610" },
     stdio: "inherit"
   });
 
@@ -57,8 +57,8 @@ function createWindow() {
   // Remove default menu bar
   mainWindow.setMenuBarVisibility(false);
 
-  // Load the web app running on port 3000
-  mainWindow.loadURL("http://localhost:3000");
+  // Load the web app running on port 5610
+  mainWindow.loadURL("http://localhost:5610");
 
   mainWindow.on("close", (event) => {
     if (!isQuitting) {

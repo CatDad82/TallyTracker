@@ -1,8 +1,17 @@
 import fs from "fs";
 import path from "path";
+import os from "os";
 import { TimeEntry, AppAssociation, MondayBoard, SystemSettings } from "../src/types.js";
 
-const DB_FILE = path.join(process.cwd(), "data/db.json");
+function getDatabasePath() {
+  if (process.env.PORT === "5610") {
+    const baseDir = process.env.APPDATA || (process.platform === 'darwin' ? path.join(os.homedir(), 'Library', 'Application Support') : os.homedir());
+    return path.join(baseDir, "TallyTimeTracker", "db.json");
+  }
+  return path.join(process.cwd(), "data/db.json");
+}
+
+const DB_FILE = getDatabasePath();
 
 interface DBStructure {
   entries: TimeEntry[];

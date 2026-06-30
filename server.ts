@@ -5,7 +5,7 @@ import { db } from "./server/db.js";
 import { MondayClient } from "./server/monday.js";
 import { TimeEntry, AppAssociation, MondayBoard } from "./src/types.js";
 
-const PORT = 3000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
 async function startServer() {
   const app = express();
