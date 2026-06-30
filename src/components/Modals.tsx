@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { X, Calendar } from "lucide-react";
 import { TimeEntry, AppAssociation } from "../types.js";
 import { NETSUITE_DATA } from "../data.js";
+import { SearchableProjectSelect } from "./SearchableProjectSelect.js";
+import { SearchableServiceItemSelect } from "./SearchableServiceItemSelect.js";
 
 interface EditEntryModalProps {
   entry: TimeEntry;
@@ -174,21 +176,13 @@ export const EditEntryModal: React.FC<EditEntryModalProps> = ({
           {/* NetSuite Project */}
           <div>
             <label className="block font-mono text-xs font-semibold tracking-wider text-brand-dim uppercase mb-1">NS Customer : Project</label>
-            <select
+            <SearchableProjectSelect
               value={nsProject}
-              onChange={e => {
-                setNsProject(e.target.value);
-                setNsTask(""); // Reset task dependent on project
+              onChange={val => {
+                setNsProject(val);
+                setNsTask("");
               }}
-              className="w-full flat-select font-sans text-xs"
-            >
-              <option value="">— Select NetSuite Project —</option>
-              {NETSUITE_DATA.projects.map(p => (
-                <option key={p.code} value={`${p.code} — ${p.name}`}>
-                  {p.code} — {p.name}
-                </option>
-              ))}
-            </select>
+            />
           </div>
 
           {/* NetSuite Task */}
@@ -210,16 +204,10 @@ export const EditEntryModal: React.FC<EditEntryModalProps> = ({
           {/* NetSuite Service Item */}
           <div>
             <label className="block font-mono text-xs font-semibold tracking-wider text-brand-dim uppercase mb-1">NS Service Item</label>
-            <select
+            <SearchableServiceItemSelect
               value={nsServiceItem}
-              onChange={e => setNsServiceItem(e.target.value)}
-              className="w-full flat-select font-sans text-xs"
-            >
-              <option value="">— Select Service Item —</option>
-              {NETSUITE_DATA.service_items.map(s => (
-                <option key={s} value={s}>{s}</option>
-              ))}
-            </select>
+              onChange={val => setNsServiceItem(val)}
+            />
           </div>
 
           {/* Footer buttons */}
@@ -364,21 +352,13 @@ export const AddRuleModal: React.FC<AddRuleModalProps> = ({
           {/* NetSuite Project */}
           <div>
             <label className="block font-mono text-xs font-semibold tracking-wider text-brand-dim uppercase mb-1">NS Customer : Project</label>
-            <select
+            <SearchableProjectSelect
               value={nsProject}
-              onChange={e => {
-                setNsProject(e.target.value);
+              onChange={val => {
+                setNsProject(val);
                 setNsTask("");
               }}
-              className="w-full flat-select font-sans text-xs"
-            >
-              <option value="">— Select NetSuite Project —</option>
-              {NETSUITE_DATA.projects.map(p => (
-                <option key={p.code} value={`${p.code} — ${p.name}`}>
-                  {p.code} — {p.name}
-                </option>
-              ))}
-            </select>
+            />
           </div>
 
           {/* NetSuite Task */}
@@ -400,16 +380,10 @@ export const AddRuleModal: React.FC<AddRuleModalProps> = ({
           {/* NetSuite Service Item */}
           <div>
             <label className="block font-mono text-xs font-semibold tracking-wider text-brand-dim uppercase mb-1">NS Service Item</label>
-            <select
+            <SearchableServiceItemSelect
               value={nsServiceItem}
-              onChange={e => setNsServiceItem(e.target.value)}
-              className="w-full flat-select font-sans text-xs"
-            >
-              <option value="">— Select Service Item —</option>
-              {NETSUITE_DATA.service_items.map(s => (
-                <option key={s} value={s}>{s}</option>
-              ))}
-            </select>
+              onChange={val => setNsServiceItem(val)}
+            />
           </div>
 
           {/* Footer buttons */}

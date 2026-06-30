@@ -1,169 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
 @import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: "Open Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Oswald", sans-serif;
 
-  --color-brand-bg: #090d16;
-  --color-brand-navy: #1e293b;
-  --color-brand-red: #6366f1;
-  --color-brand-red-dark: #4f46e5;
-  --color-brand-blue: #38bdf8;
-  --color-brand-accent: #1e293b;
-  --color-brand-border: #334155;
-  --color-brand-dim: #94a3b8;
-  --color-brand-on-dark: #f8fafc;
-  --color-brand-dim-dark: #64748b;
+  --color-brand-bg: #FBF8F2; /* Cream background */
+  --color-brand-navy: #0B2A6B; /* Deep Royal Blue */
+  --color-brand-red: #E10E17; /* Bright Red */
+  --color-brand-red-dark: #B00C13; /* Darker Red */
+  --color-brand-blue: #2F6BFF; /* Accent Blue */
+  --color-brand-accent: #F4EFE3; /* Light stripe cream */
+  --color-brand-border: #0B2A6B; /* Navy borders */
+  --color-brand-dim: #8A857C; /* Muted brown-grey */
+  --color-brand-on-dark: #ffffff; /* Contrast white for dark backgrounds */
+  --color-brand-dim-dark: #AEBFE0; /* Light blue-grey for text on navy bg */
 }
 
-/* Base Body Styling conforming to dark slate interface */
+/* Headings uppercase Oswald style */
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: "Oswald", sans-serif !important;
+  text-transform: uppercase !important;
+}
+
+/* Base Body Styling conforming to cream interface */
 body {
   background-color: var(--color-brand-bg);
-  color: var(--color-brand-on-dark);
+  color: var(--color-brand-navy);
   font-family: var(--font-sans);
 }
 
-/* Focus and input resets */
+/* Focus resets */
 input:focus, select:focus, textarea:focus {
   outline: none;
 }
 
-/* Sleek Interface Card Overrides */
+/* Cards & Containers styled with thick navy outline and flat sharp corners */
 .bg-white {
-  background-color: rgba(30, 41, 59, 0.4) !important;
-  backdrop-filter: blur(12px) !important;
-  border-color: #1e293b !important;
-}
-
-/* Table header & layout adjustments */
-thead tr.bg-brand-navy {
-  background-color: #0f172a !important;
-  border-bottom: 2px solid #334155 !important;
-}
-
-tbody tr.bg-white {
-  background-color: transparent !important;
-}
-
-tbody tr.hover\:bg-brand-accent\/40:hover {
-  background-color: rgba(99, 102, 241, 0.08) !important;
-}
-
-/* Dual utility class correction */
-.text-brand-navy {
-  color: #f1f5f9 !important;
-}
-
-.bg-brand-navy {
-  background-color: #111827 !important;
-}
-
-.border-brand-navy {
-  border-color: #1e293b !important;
+  background-color: #FFFFFF !important;
+  border-color: var(--color-brand-navy) !important;
 }
 
 .border-2 {
-  border-width: 1px !important;
+  border-width: 2px !important;
+  border-style: solid !important;
 }
 
-/* Modals & popup overlay dark adjustments */
-.fixed.bg-brand-navy\/60 {
-  background-color: rgba(9, 13, 22, 0.8) !important;
-  backdrop-filter: blur(8px) !important;
+.border-brand-border, .border-brand-navy {
+  border-color: var(--color-brand-navy) !important;
 }
 
-.fixed .bg-brand-bg {
-  background-color: #0f172a !important;
-  border-color: #334155 !important;
-  border-radius: 16px !important;
+/* Force flat, square corners on everything to match Swiss/modern original style */
+.rounded-xl, .rounded-lg, .rounded-md, .rounded-sm, .rounded-full:not(.dot) {
+  border-radius: 0px !important;
 }
 
-.fixed .bg-brand-red {
-  background-color: #4f46e5 !important;
+/* Table styling: thick navy headers, zebra stripes, navy borders */
+table {
+  border-collapse: collapse !important;
+  width: 100% !important;
 }
 
-/* Inputs styled like top-tier developer IDEs */
+th {
+  font-family: "Oswald", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: #ffffff !important;
+  background-color: var(--color-brand-navy) !important;
+  padding: 11px 14px !important;
+  border: none !important;
+  text-align: left !important;
+}
+
+td {
+  padding: 11px 14px !important;
+  font-size: 13px !important;
+  color: var(--color-brand-navy) !important;
+  border-bottom: 2px solid var(--color-brand-navy) !important;
+}
+
+tr:last-child td {
+  border-bottom: none !important;
+}
+
+tr:nth-child(even) {
+  background-color: var(--color-brand-accent) !important; /* light stripe cream */
+}
+
+tr:nth-child(odd) {
+  background-color: #ffffff !important;
+}
+
+/* Input Fields & Dropdowns styled with solid navy borders and sharp corners */
 .flat-input, .flat-select {
-  background-color: #1e293b !important;
-  border: 1px solid #334155 !important;
+  background-color: #ffffff !important;
+  border: 2px solid var(--color-brand-navy) !important;
   font-family: var(--font-sans);
   font-size: 14px;
-  color: #f1f5f9 !important;
+  color: var(--color-brand-navy) !important;
   padding: 8px 12px;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
-  border-radius: 8px !important;
+  border-radius: 0px !important;
 }
 
 .flat-input:focus, .flat-select:focus {
-  border-color: #6366f1 !important;
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25) !important;
+  border-color: var(--color-brand-red) !important;
+  box-shadow: 0 0 0 2px rgba(225, 14, 23, 0.15) !important;
 }
 
-/* Rounded borders for structural containers */
-.border-2.bg-white, .border-2.overflow-hidden {
-  border-radius: 12px !important;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3) !important;
-}
-
-/* Navigation & Header Overrides */
-.bg-brand-navy.px-6.py-4 {
-  background-color: #090d16 !important;
-  border-bottom: 1px solid #1e293b !important;
-}
-
-.bg-brand-navy.height-\[34px\], .bg-brand-navy.flex-none {
-  background-color: #090d16 !important;
-}
-
-.bg-brand-navy.px-6.select-none {
-  background-color: #090d16 !important;
-  border-bottom: 1px solid #1e293b !important;
-}
-
-/* Live tracking badge */
-.bg-brand-red.animate-pulse {
-  background-color: #f43f5e !important; /* gorgeous pulsing red for active state */
-}
-
-/* Buttons style refinement */
+/* Button Refinement */
 button.bg-brand-red {
-  background-color: #6366f1 !important;
-  border-radius: 8px !important;
+  background-color: var(--color-brand-red) !important;
+  color: #ffffff !important;
+  border-radius: 0px !important;
+  font-family: "Oswald", sans-serif !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
 }
 
 button.bg-brand-red:hover {
-  background-color: #4f46e5 !important;
+  background-color: var(--color-brand-red-dark) !important;
 }
 
 button.border-2.border-brand-navy {
-  border-color: #334155 !important;
-  border-radius: 8px !important;
-  background-color: #1e293b !important;
-  color: #e2e8f0 !important;
+  border-color: var(--color-brand-navy) !important;
+  border-radius: 0px !important;
+  background-color: #ffffff !important;
+  color: var(--color-brand-navy) !important;
+  font-family: "Oswald", sans-serif !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
 }
 
 button.border-2.border-brand-navy:hover {
-  background-color: #334155 !important;
+  background-color: var(--color-brand-accent) !important;
 }
 
-/* Beautiful custom scrollbars matching Sleek dark slate style */
-::-webkit-scrollbar {
+/* Modals & popup overlay */
+.fixed.bg-brand-navy\/60 {
+  background-color: rgba(11, 42, 107, 0.5) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+.fixed .bg-brand-bg {
+  background-color: #ffffff !important;
+  border: 2px solid var(--color-brand-navy) !important;
+  border-radius: 0px !important;
+  box-shadow: 8px 8px 0px rgba(11, 42, 107, 0.2) !important;
+}
+
+/* Live tracking dot & pulse */
+.dot {
   width: 8px;
   height: 8px;
+  border-radius: 50% !important;
+  background-color: #3FA45B;
+  display: inline-block;
+}
+
+.dot.off {
+  background-color: var(--color-brand-red);
+}
+
+/* Scrollbars matching original cream/navy */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #EFE9DD;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
+  background: var(--color-brand-navy);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6366f1;
+  background: var(--color-brand-red);
+}
+
+/* Animations */
+@layer utilities {
+  @keyframes slide-in {
+    from {
+      transform: translateY(0.5rem);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes scale-in {
+    from {
+      transform: scale(0.97);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-in {
+    animation: slide-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.15s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.18s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
 }

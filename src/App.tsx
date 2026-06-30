@@ -1,19 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { Monitor, Calendar, Settings, Play, Check, AlertCircle, Clock, List, BarChart3, Users, Settings2, HelpCircle } from "lucide-react";
+import { Calendar, Settings, Play, Check, AlertCircle, Clock, List, BarChart3, Users, Settings2, HelpCircle } from "lucide-react";
 import { TimeEntry, AppAssociation, MondayBoard, SystemSettings } from "./types.js";
 import { TimerTab } from "./components/TimerTab.js";
 import { LogTab } from "./components/LogTab.js";
 import { SummaryTab } from "./components/SummaryTab.js";
 import { ReportsTab } from "./components/ReportsTab.js";
 import { AssociationsTab } from "./components/AssociationsTab.js";
-import { SimulationPanel } from "./components/SimulationPanel.js";
 import { EditEntryModal, AddRuleModal } from "./components/Modals.js";
-
-interface ActiveSimulation {
-  app_name: string;
-  url_context: string;
-  page_title: string;
-}
 
 export default function App() {
   const [tab, setTab] = useState<"timer" | "log" | "summary" | "reports" | "associations">("timer");
@@ -41,13 +34,6 @@ export default function App() {
 
   // Timer states
   const [timerSeconds, setTimerSeconds] = useState(0);
-
-  // Active Simulation states (Simulated Active Window)
-  const [simFocus, setSimFocus] = useState<ActiveSimulation>({
-    app_name: "chrome",
-    page_title: "Tally Time Tracker Dashboard",
-    url_context: ""
-  });
 
   // Modals / Overlays
   const [toast, setToast] = useState<{ msg: string; type: "success" | "monday" | "warn" } | null>(null);
@@ -209,63 +195,6 @@ export default function App() {
     } catch (e) {
       console.error(e);
     }
-  };
-
-  // Simulated active window focus changes
-  const handleSimulateFocus = (params: {
-    app_name: string;
-    url_context: string;
-    page_title: string;
-    monday_board_id?: string;
-    monday_item_id?: string;
-  }) => {
-    setSimFocus({
-      app_name: params.app_name,
-      url_context: params.url_context,
-      page_title: params.page_title
-    });
-
-    // Check Auto-Assign Rules matching
-    // Normalize url or name
-    let matchedRule: AppAssociation | undefined;
-
-    // Check website domains if browser
-    if (params.app_name === "chrome" && params.url_context) {
-      try {
-        const host = new URL(params.url_context).hostname.replace("www.", "").toLowerCase();
-        matchedRule = rules.find(r => r.app_name === host);
-      } catch (e) {}
-    }
-
-    // Fallback to app name match (e.g. figma, spotify, vscode)
-    if (!matchedRule) {
-      matchedRule = rules.find(r => r.app_name === params.app_name.toLowerCase());
-    }
-
-    const suggestedProject = matchedRule?.project || "No Project";
-    const suggestedCategory = matchedRule?.category || "";
-    const suggestedNsProj = matchedRule?.ns_project || "";
-    const suggestedNsTask = matchedRule?.ns_task || "";
-    const suggestedNsService = matchedRule?.ns_service_item || "";
-
-    const taskTitle = params.page_title || params.app_name.toUpperCase();
-
-    // Start tracking simulated target automatically
-    handleStartTracking({
-      task: taskTitle,
-      project: suggestedProject,
-      category: suggestedCategory,
-      notes: matchedRule?.task_hint || "",
-      app_name: params.app_name,
-      url_context: params.url_context,
-      ns_project: suggestedNsProj,
-      ns_task: suggestedNsTask,
-      ns_service_item: suggestedNsService,
-      monday_board_id: params.monday_board_id,
-      monday_item_id: params.monday_item_id,
-      board_name: params.monday_board_id ? "Simulated Board" : undefined,
-      task_name: params.monday_item_id ? taskTitle : undefined
-    });
   };
 
   // --- Log / Summary period updates ---
@@ -640,17 +569,6 @@ export default function App() {
           />
         )}
       </div>
-
-      {/* Simulation/Active Watcher Panel Drawer on Right */}
-      <SimulationPanel
-        onSimulateFocus={handleSimulateFocus}
-        activeApp={simFocus.app_name}
-        activeTitle={simFocus.page_title}
-        activeUrl={simFocus.url_context}
-        rules={rules}
-        boards={boards}
-        isTracking={isTracking}
-      />
 
       {/* Toasts */}
       {toast && (

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Play, Square, Plus, Award } from "lucide-react";
 import { TimeEntry } from "../types.js";
 import { NETSUITE_DATA } from "../data.js";
+import { SearchableProjectSelect } from "./SearchableProjectSelect.js";
+import { SearchableServiceItemSelect } from "./SearchableServiceItemSelect.js";
 
 interface TimerTabProps {
   isTracking: boolean;
@@ -315,22 +317,14 @@ export const TimerTab: React.FC<TimerTabProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-3 bg-white">
           <div className="p-4 border-b md:border-b-0 md:border-r border-brand-navy">
             <label className="block font-mono text-[9px] font-bold text-brand-dim uppercase mb-1">CUSTOMER : PROJECT</label>
-            <select
+            <SearchableProjectSelect
               value={nsProject}
-              onChange={e => {
-                setNsProject(e.target.value);
+              onChange={val => {
+                setNsProject(val);
                 setNsTask("");
               }}
               disabled={isTracking}
-              className="w-full flat-select text-xs"
-            >
-              <option value="">— Select NetSuite Project —</option>
-              {NETSUITE_DATA.projects.map(p => (
-                <option key={p.code} value={`${p.code} — ${p.name}`}>
-                  {p.code} — {p.name}
-                </option>
-              ))}
-            </select>
+            />
           </div>
           <div className="p-4 border-b md:border-b-0 md:border-r border-brand-navy">
             <label className="block font-mono text-[9px] font-bold text-brand-dim uppercase mb-1">TASK</label>
@@ -348,17 +342,11 @@ export const TimerTab: React.FC<TimerTabProps> = ({
           </div>
           <div className="p-4">
             <label className="block font-mono text-[9px] font-bold text-brand-dim uppercase mb-1">SERVICE ITEM</label>
-            <select
+            <SearchableServiceItemSelect
               value={nsServiceItem}
-              onChange={e => setNsServiceItem(e.target.value)}
+              onChange={val => setNsServiceItem(val)}
               disabled={isTracking}
-              className="w-full flat-select text-xs"
-            >
-              <option value="">— Select Service Item —</option>
-              {NETSUITE_DATA.service_items.map(s => (
-                <option key={s} value={s}>{s}</option>
-              ))}
-            </select>
+            />
           </div>
         </div>
       </div>

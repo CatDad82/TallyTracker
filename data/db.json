@@ -84,6 +84,28 @@
       "end_time": "2026-06-29T15:30:00.000Z",
       "duration_seconds": 9000,
       "app_name": "figma"
+    },
+    {
+      "id": 8,
+      "project": "Globex Mobile App",
+      "category": "Creative",
+      "task": "Designing App Store screenshots",
+      "notes": "Using high-res device frames",
+      "start_time": "2026-06-30T01:05:05.440Z",
+      "app_name": "",
+      "url_context": "",
+      "monday_board_id": "",
+      "monday_item_id": "",
+      "task_name": "",
+      "board_name": "",
+      "status": "",
+      "assignee": "",
+      "due_date": "",
+      "ns_project": "",
+      "ns_task": "",
+      "ns_service_item": "",
+      "end_time": "2026-06-30T01:06:45.104Z",
+      "duration_seconds": 99
     }
   ],
   "projects": [
