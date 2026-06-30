@@ -1,6 +1,8 @@
 node_modules/
 build/
 dist/
+dist-desktop/
+package-lock.json
 coverage/
 .DS_Store
 *.log
