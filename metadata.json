@@ -1,0 +1,6 @@
+{
+  "name": "Tally Time Tracker",
+  "description": "Desktop-grade smart time tracking dashboard with automated window matching, period analysis reports, and real-time Monday.com board review integrations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

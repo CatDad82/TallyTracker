@@ -1,0 +1,151 @@
+{
+  "entries": [
+    {
+      "id": 1,
+      "project": "Acme Corp Web Redesign",
+      "category": "Deep Work",
+      "task": "Figma.com - Login Page Mockup",
+      "notes": "Revised spacing and color contrast for accessibility",
+      "start_time": "2026-06-28T09:00:00.000Z",
+      "end_time": "2026-06-28T11:15:00.000Z",
+      "duration_seconds": 8100,
+      "app_name": "chrome",
+      "url_context": "https://figma.com/file/login_page"
+    },
+    {
+      "id": 2,
+      "project": "Internal",
+      "category": "Meetings",
+      "task": "Sprint Planning",
+      "notes": "Discussed roadmap and deliverables",
+      "start_time": "2026-06-28T11:30:00.000Z",
+      "end_time": "2026-06-28T12:30:00.000Z",
+      "duration_seconds": 3600,
+      "app_name": "zoom"
+    },
+    {
+      "id": 3,
+      "project": "Acme Corp Web Redesign",
+      "category": "Deep Work",
+      "task": "github.com - Implementing Auth middleware",
+      "notes": "Hooked up token validation routes",
+      "start_time": "2026-06-28T13:30:00.000Z",
+      "end_time": "2026-06-28T16:45:00.000Z",
+      "duration_seconds": 11700,
+      "app_name": "chrome",
+      "url_context": "https://github.com/acme/auth"
+    },
+    {
+      "id": 4,
+      "project": "Admin",
+      "category": "Admin",
+      "task": "Timesheet Submission & Review",
+      "notes": "Submitted billing details",
+      "start_time": "2026-06-28T17:00:00.000Z",
+      "end_time": "2026-06-28T17:30:00.000Z",
+      "duration_seconds": 1800,
+      "app_name": "chrome"
+    },
+    {
+      "id": 5,
+      "project": "Globex Mobile App",
+      "category": "Research",
+      "task": "claude.ai - Researching Push Notifications on iOS",
+      "notes": "Analyzing APNs silent push payload behaviors",
+      "start_time": "2026-06-29T09:30:00.000Z",
+      "end_time": "2026-06-29T11:15:00.000Z",
+      "duration_seconds": 6300,
+      "app_name": "chrome",
+      "url_context": "https://claude.ai/chat/apns"
+    },
+    {
+      "id": 6,
+      "project": "Acme Corp Web Redesign",
+      "category": "Admin",
+      "task": "Monday.com Board Review",
+      "notes": "Syncing task status to Done",
+      "start_time": "2026-06-29T11:20:00.000Z",
+      "end_time": "2026-06-29T12:00:00.000Z",
+      "duration_seconds": 2400,
+      "app_name": "chrome",
+      "url_context": "https://company.monday.com/boards/18418713154/pulses/20384",
+      "monday_board_id": "18418713154",
+      "monday_item_id": "20384",
+      "task_name": "Database migrations hookup",
+      "board_name": "Dezigner Lane Board"
+    },
+    {
+      "id": 7,
+      "project": "Globex Mobile App",
+      "category": "Creative",
+      "task": "Designing App Store screenshots",
+      "notes": "Using high-res device frames",
+      "start_time": "2026-06-29T13:00:00.000Z",
+      "end_time": "2026-06-29T15:30:00.000Z",
+      "duration_seconds": 9000,
+      "app_name": "figma"
+    }
+  ],
+  "projects": [
+    "Acme Corp Web Redesign",
+    "Globex Mobile App",
+    "Admin",
+    "Internal",
+    "Personal"
+  ],
+  "categories": [
+    "Deep Work",
+    "Meetings",
+    "Admin",
+    "Research",
+    "Creative",
+    "Communication",
+    "Learning",
+    "Other"
+  ],
+  "app_associations": [
+    {
+      "app_name": "claude.ai",
+      "project": "Internal",
+      "category": "Research",
+      "task_hint": "Researching AI models",
+      "auto_track": 1
+    },
+    {
+      "app_name": "github.com",
+      "project": "Acme Corp Web Redesign",
+      "category": "Deep Work",
+      "task_hint": "Pushing code to main",
+      "auto_track": 1
+    },
+    {
+      "app_name": "figma.com",
+      "project": "Globex Mobile App",
+      "category": "Creative",
+      "task_hint": "Designing UI Mockups",
+      "auto_track": 1
+    },
+    {
+      "app_name": "monday.com",
+      "project": "Acme Corp Web Redesign",
+      "category": "Admin",
+      "task_hint": "Checking Monday board",
+      "auto_track": 1
+    }
+  ],
+  "monday_boards": [
+    {
+      "board_id": "18418713154",
+      "board_name": "Dezigner Lane Board",
+      "project": "Acme Corp Web Redesign",
+      "category": "Admin",
+      "auto_track": 1
+    }
+  ],
+  "settings": {
+    "MONDAY_API_TOKEN": "",
+    "REVIEW_BOARD_ID": "18418713154",
+    "REVIEW_HOUR": "18",
+    "REVIEW_PERIOD": "today"
+  }
+}
